@@ -2,26 +2,29 @@
 
 The default behavior of * is to put the word under the cursor ('cword') into the 
 search register and jump to the next occurence. This plugin modifies this 
-behvior in two ways.
+behavior with the following:
 
-  1. the cursor does not move
-  2. gives a visual feedback by flashing the text
+  1. fix the cursor in the same place
+  2. gives a visual feedback by flashing the text that was just copied
+  3. works from visual mode
+
+![](vim-star-flasher.gif)
 
 ## Installation
 
 vim-plug:
 ```vimL
-Plug 'yuki-uthman/vim-scroller'
+Plug 'yuki-uthman/vim-star-flasher'
 ```
 
 vundle:
 ```vimL
-Plugin 'yuki-uthman/vim-scroller'
+Plugin 'yuki-uthman/vim-star-flasher'
 ```
 
 minpac:
 ```vimL
-call minpac#add('yuki-uthman/vim-scroller')
+call minpac#add('yuki-uthman/vim-star-flasher')
 ```
 
 ## Configuration

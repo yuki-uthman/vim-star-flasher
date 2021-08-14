@@ -1,6 +1,6 @@
 # star-flasher
 
-The default behavior of * is to put the word under the cursor (<cword>) into the 
+The default behavior of * is to put the word under the cursor ('cword') into the 
 search register and jump to the next occurence. This plugin modifies this 
 behvior in two ways.
 
@@ -32,24 +32,18 @@ To change the duration of the flash:
 let g:star_flasher_duration = 500
 ```
 
-The default color of the flash is set to 'Search' highlight group. This is the 
-same color as hlsearch highlight. The exact color would depend on your 
-colorscheme. You can change to any highlight group by changing the main 
-highlight group:
-```vimL
-" default is set to 'Search'
-let g:star_flasher_main_highlight = 'Visual'
-```
-
-The flash becomes invisible when you are flashing over some text that are 
-already highlighted by hlsearch. You can define a different color by setting the 
-secondary highlight group:
+The default color of the flash is set to 'IncSearch' highlight group. The exact 
+color would depend on your colorscheme. You can change to any highlight group by 
+changing the flasher highlight group:
 ```vimL
 " default is set to 'IncSearch'
-let g:star_flasher_secondary_highlight = 'ErrorMsg'
+let g:star_flasher_highlight = 'Visual'
 ```
+However setting this variable to 'Search' is not recommended due to the fact 
+that when the text is already highlighted with hlsearch the flash would not be 
+visible as it would flash with the same color.
 
-To see all the highlight groups already defined:
+To see all the highlight groups that are defined in your colorscheme:
 ```vimL
 :highlight
 ```
@@ -57,16 +51,16 @@ To see all the highlight groups already defined:
 If you want to define your own highlight group:
 ```vimL
 " for terminal
-" ctermfg as the color of the letters
-" ctermbg as the color of the background
+" ctermfg as the font color
+" ctermbg as the background color
 highlight flasherColor ctermfg='White' ctermbg='Black'
 
 " for gui
-" guifg as the color of the letters
-" guibg as the color of the background
+" guifg as the font color
+" guibg as the background color
 highlight flasherColor guifg='White' guibg='Black'
 
-let g:star_flasher_main_highlight = 'flasherColor'
+let g:star_flasher_highlight = 'flasherColor'
 ```
 The following colors are available in most systems:
   - Black

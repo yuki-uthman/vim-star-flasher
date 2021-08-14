@@ -55,12 +55,11 @@ endfunction "}}}
 function! s:get_user_config() "{{{
   let to_return = {}
 
-  let main = get(g:, 'star_flasher_main_highlight', 'Search')
-  let secondary = get(g:, 'star_flasher_secondary_highlight', 'IncSearch')
+  let highlight = get(g:, 'star_flasher_highlight', 'IncSearch')
 
   let duration = get(g:, 'star_flasher_duration', 500)
 
-  return { 'duration' : duration , 'main_highlight': main, 'secondary_highlight': secondary}
+  return { 'duration' : duration , 'highlight': highlight }
 endfunction "}}}
 
 function! s:put_in_search_reg(mode) " {{{
@@ -119,30 +118,21 @@ function! s:star_flasher(mode) "{{{
     call s:stop_flash(0)
   endif
 
-
   let s:user_config = s:get_user_config()
 
   call s:stop_timers()
 
   call s:put_in_search_reg(a:mode)
 
-  let s:pos = match(getline('.'), @/, col('.') - 1) + 1
-  if s:pos == col('.') && v:hlsearch || a:mode ==# 'v' && v:hlsearch
-  " if v:hlsearch
-    call s:flash(a:mode, s:user_config.secondary_highlight)
-  else
-    call s:flash(a:mode, s:user_config.main_highlight)
-  endif
+  call s:flash(a:mode, s:user_config.highlight)
 
-  let s:flash.timer = timer_start(s:user_config.duration, function('<SID>stop_flash'))
-  call add(s:timers, s:flash.timer)
+  let timer_id = timer_start(s:user_config.duration, function('<SID>stop_flash'))
+  call add(s:timers, timer_id)
 
-
-  " jump back
+  " jump back to the beginning of the visual selection
   if a:mode ==# 'v'
     normal! `<
   endif
-
 
 endfunction "}}}
 

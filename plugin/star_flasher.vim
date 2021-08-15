@@ -1,7 +1,7 @@
 " Star-Flasher - for the star that flashes
 "
 " Author: Yuki Yoshimine <yuki.uthman@gmail.com>
-" Source: https://github.com/yuki-uthman/vim-star
+" Source: https://github.com/yuki-uthman/vim-star-flasher
 
 
 if exists("g:loaded_star_flasher")
